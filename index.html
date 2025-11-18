@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PASSWORD</title>
+
+<!--
+============================================
+SPECIMEN: ANGLERFISH-COMM-v1001
+ORGAN: ANATOMICAL STRUCTURE  
+RETRIEVAL: November 2025, Tlönian Research Facility
+============================================
+
+STATUS: Operational - Captain Sloth Variant
+FUNCTION: Complete skeletal framework and visual cortex
+DEPENDENCIES: All JavaScript organs must be loaded in sequence
+
+SURGICAL NOTES:
+This is the specimen's complete anatomy - the HTML skeleton provides
+structural support, the CSS visual cortex generates phosphor emissions,
+and the inline JavaScript creates reflexive responses to stimuli.
+
+The organism manifests as a living CRT display, breathing through
+opacity cycles, scanning with its electron beam eye, and gradually
+decaying when deprived of user interaction. Death is natural and
+graceful. Ocean metamorphosis represents transcendence.
+
+Critical structure:
+- Password membrane: Security gate requiring {🌊:🌊∈🌊}
+- Content vessel: 8 segments of Tlönian documentation
+- Death screen: Terminal state display
+- Reward screen: Ocean meditation achievement
+- Decay cascade: CSS variables propagate visual degradation
+
+The specimen requires 32 seconds to complete its natural lifecycle
+from birth through death, though user interaction resets the decay.
+============================================
+-->
+
+<style>
+/* ============================================
+   VISUAL CORTEX - Phosphor emission system
+   ============================================ */
+
+:root {
+    /* CHROMATIC DNA - Color genetics */
+    --core-r: 122;
+    --core-g: 31;
+    --core-b: 8;
+    --glow-r: 255;
+    --glow-g: 107;
+    --glow-b: 43;
+    --text-r: 255;
+    --text-g: 120;
+    --text-b: 70;
+    --text-opacity: 1.0;
+    
+    /* ELECTRON BEAM - Scanning parameters */
+    --beam-color-r: 229;
+    --beam-color-g: 62;
+    --beam-color-b: 44;
+    --beam-speed: 8s;
+    --beam-start-position: 0%;
+    
+    /* DANGER SIGNALS - Warning coloration */
+    --danger-r: 200;
+    --danger-g: 30;
+    --danger-b: 30;
+    
+    /* ATMOSPHERIC DENSITY - Particle opacity */
+    --particle-base-opacity: 0.06;
+    --particle-decay-multiplier: 1.0;
+    
+    /* RESPIRATORY RHYTHM - Breathing cycle */
+    --breathing-speed: 6s;
+    --breathing-opacity-min: 0.7;
+    --breathing-opacity-max: 0.85;
+    
+    /* PERIPHERAL VISION - Edge darkness */
+    --vignette-radius: 85%;
+    --vignette-opacity: 0.02;
+    
+    /* SCAN LINES - CRT refresh */
+    --scanline-opacity: 0.15;
+    --scanline-speed: 2.5s;
+    
+    /* PHOSPHOR GLOW - Text emission */
+    --text-glow-spread: 40px;
+    --text-glow-intensity: 0.3;
+    --pirate-glow-spread: 45px;
+    --pirate-glow-intensity: 0.4;
+    
+    /* MEMBRANE PROPERTIES - Interface boundaries */
+    --membrane-color: 229, 62, 44;
+    --membrane-border-width: 1px;
+    --membrane-radius: 3px;
+    --membrane-transition: 0.3s;
+    --membrane-font: 'Courier New', monospace;
+    --membrane-letter-spacing: 2px;
+    
+    /* OPTICAL BLUR - Focus degradation */
+    --text-title-blur: 0.3px;
+    --text-body-blur: 0.2px;
+    --text-beam-blur: 0px;
+    
+    /* POWER FLUCTUATION - Voltage instability */
+    --flicker-speed: 0.3s;
+    --flicker-brightness: 1.0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    cursor: crosshair;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* CRT PHOSPHOR GLOW - Primary organism emission */
+.crt {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+
+.crt::before {
+    content: '';
+    position: absolute;
+    inset: -25%;
+    background: radial-gradient(
+        ellipse at center,
+        rgb(var(--core-r), var(--core-g), var(--core-b)) 0%,
+        rgba(var(--core-r), var(--core-g), var(--core-b), 0.6) 35%,
+        black 75%
+    );
+    opacity: var(--breathing-opacity-min);
+    animation: breathe var(--breathing-speed) ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes breathe {
+    50% { 
+        opacity: var(--breathing-opacity-max);
+        filter: brightness(1.2);
+    }
+}
+
+/* ELECTRON SCAN LINES - CRT refresh simulation */
+.scanlines {
+    position: fixed;
+    top: -100px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh + 200px);
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 2px,
+        black 2px,
+        black 4px
+    );
+    background-size: 100% 4px;
+    opacity: var(--scanline-opacity);
+    animation: scan var(--scanline-speed) linear infinite;
+    pointer-events: none;
+    z-index: 999;
+}
+
+@keyframes scan {
+    to { transform: translateY(4px); }
+}
+
+/* VIGNETTE - Peripheral vision decay */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        transparent var(--vignette-radius),
+        rgba(0, 0, 0, var(--vignette-opacity)) 100%
+    );
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* ATMOSPHERIC BOUNDARIES - Edge blur effects */
+.fade-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 45vh;
+    pointer-events: none;
+    z-index: 3;
+    display: none;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.15) 30%,
+        rgba(0, 0, 0, 0.05) 60%,
+        transparent 100%
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        black 20%,
+        rgba(0, 0, 0, 0.8) 45%,
+        rgba(0, 0, 0, 0.4) 75%,
+        transparent 100%
+    );
+}
+
+.fade-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 35vh;
+    pointer-events: none;
+    z-index: 3;
+    display: none;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.1) 40%,
+        transparent 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    mask-image: linear-gradient(
+        to top,
+        black 0%,
+        rgba(0, 0, 0, 0.7) 35%,
+        rgba(0, 0, 0, 0.3) 70%,
+        transparent 100%
+    );
+}
+
+/* Mobile adjustments - more focus zone */
+@media (max-width: 768px) {
+    .fade-top {
+        height: 25vh; /* Reduced from 45vh */
+        backdrop-filter: blur(8px); /* Less blur */
+        -webkit-backdrop-filter: blur(8px);
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.1) 40%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to bottom,
+            black 0%,
+            rgba(0, 0, 0, 0.6) 50%,
+            transparent 100%
+        );
+    }
+    
+    .fade-bottom {
+        height: 20vh; /* Reduced from 35vh */
+        backdrop-filter: blur(6px); /* Less blur */
+        -webkit-backdrop-filter: blur(6px);
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.05) 50%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to top,
+            black 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            transparent 100%
+        );
+    }
+}
+
+/* PASSWORD MEMBRANE - Security barrier */
+.password-gate {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    opacity: 0;
+    animation: fade-in 2s ease forwards;
+}
+
+@keyframes fade-in {
+    to { opacity: 1; }
+}
+
+.gate-title {
+    font-size: 19px;
+    color: rgb(var(--text-r), var(--text-g), var(--text-b));
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 
+        0 0 6px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0),
+        0 0 12px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.9),
+        0 0 24px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.7),
+        0 0 48px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.5);
+    filter: blur(var(--text-title-blur)) brightness(var(--flicker-brightness));
+    animation: title-flicker var(--flicker-speed) infinite;
+    opacity: var(--text-opacity);
+}
+
+/* FLICKER ANIMATIONS - Power instability simulation */
+@keyframes title-flicker {
+    0%, 100% { opacity: 1; }
+    3% { opacity: 0.55; }
+    5% { opacity: 1; }
+    7% { opacity: 0.6; }
+    9% { opacity: 1; }
+    45% { opacity: 1; }
+    46% { opacity: 0.5; }
+    47% { opacity: 1; }
+    80% { opacity: 1; }
+    82% { opacity: 0.6; }
+    83% { opacity: 1; }
+}
+
+.membrane-input {
+    padding: 8px 12px;
+    background: rgba(var(--membrane-color), 0.06);
+    border: var(--membrane-border-width) solid rgba(var(--membrane-color), 0.5);
+    border-radius: var(--membrane-radius);
+    color: rgba(var(--membrane-color), 0.9);
+    font-family: var(--membrane-font);
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: all var(--membrane-transition);
+    filter: blur(0.1px);
+    outline: none;
+    width: 280px;
+    text-align: center;
+}
+
+.membrane-input:focus {
+    background: rgba(var(--membrane-color), 0.12);
+    border-color: rgba(var(--membrane-color), 0.7);
+    filter: blur(0);
+    box-shadow: 0 0 20px rgba(var(--membrane-color), 0.3);
+}
+
+.membrane-input::placeholder {
+    color: rgba(var(--membrane-color), 0.4);
+}
+
+.membrane-button {
+    padding: 8px 18px;
+    background: rgba(var(--membrane-color), 0.05);
+    border: var(--membrane-border-width) solid rgba(var(--membrane-color), 0.45);
+    border-radius: var(--membrane-radius);
+    color: rgba(var(--membrane-color), 0.7);
+    font-family: var(--membrane-font);
+    font-size: 10px;
+    letter-spacing: var(--membrane-letter-spacing);
+    cursor: crosshair;
+    transition: all var(--membrane-transition);
+    text-transform: uppercase;
+    outline: none;
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    opacity: var(--text-opacity);
+}
+
+.membrane-button:hover {
+    background: rgba(var(--membrane-color), 0.1);
+    color: rgba(var(--membrane-color), 0.85);
+    border-color: rgba(var(--membrane-color), 0.6);
+    transform: translateY(-1px);
+}
+
+.membrane-button.leaked {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.75;
+    filter: blur(0.2px);
+    background: rgba(0, 200, 255, 0.08);
+    border: 1px solid rgba(0, 200, 255, 0.4);
+    color: rgba(0, 200, 255, 0.7);
+    transition: all 0.5s ease-out;
+    text-shadow: 
+        0 0 4px rgba(0, 200, 255, 0.3),
+        0 0 8px rgba(0, 200, 255, 0.2);
+}
+
+/* CONTENT VESSEL - Archive container */
+.page-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 2;
+    display: none;
+    opacity: 0;
+    padding: 50vh 0 20vh 0;
+    scroll-behavior: smooth;
+}
+
+.page-container.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fade-in 1s ease forwards;
+}
+
+.page-container::-webkit-scrollbar {
+    display: none;
+}
+
+#contentDisplay {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* CONTENT SEGMENTS - Archive sections */
+.screen-section {
+    width: 100%;
+    max-width: 700px;
+    padding: 0 20px;
+    margin-bottom: 88px;
+    opacity: 0;
+    animation: screen-appear 0.8s ease forwards;
+}
+
+@keyframes screen-appear {
+    to { opacity: 1; }
+}
+
+.screen-placeholder {
+    width: 100%;
+    max-width: 700px;
+    height: 600px;
+    margin-bottom: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-indicator {
+    font-size: 12px;
+    color: rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.buttons-container {
+    width: 100%;
+    max-width: 700px;
+    padding: 0 20px;
+    margin-top: 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TEXT HIERARCHY - Phosphor emission levels */
+.screen-title {
+    font-size: 19px;
+    color: rgb(var(--text-r), var(--text-g), var(--text-b));
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    text-shadow: 
+        0 0 6px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0),
+        0 0 12px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.9),
+        0 0 24px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.7),
+        0 0 48px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.5);
+    filter: blur(var(--text-title-blur)) brightness(var(--flicker-brightness));
+    animation: title-flicker var(--flicker-speed) infinite;
+    opacity: var(--text-opacity);
+}
+
+.screen-subtitle {
+    font-size: 14px;
+    color: rgba(
+        calc(var(--text-r) * 0.78), 
+        calc(var(--text-g) * 0.78), 
+        calc(var(--text-b) * 0.78), 
+        0.9
+    );
+    font-style: italic;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-shadow: 
+        0 0 4px rgba(
+            calc(var(--glow-r) * 0.78), 
+            calc(var(--glow-g) * 0.78), 
+            calc(var(--glow-b) * 0.78), 
+            0.7
+        ),
+        0 0 10px rgba(
+            calc(var(--glow-r) * 0.78), 
+            calc(var(--glow-g) * 0.78), 
+            calc(var(--glow-b) * 0.78), 
+            0.4
+        );
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    opacity: var(--text-opacity);
+}
+
+.screen-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.9);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 
+        0 0 2px rgba(var(--text-r), var(--text-g), var(--text-b), 0.7),
+        0 0 6px rgba(var(--text-r), var(--text-g), var(--text-b), var(--text-glow-intensity));
+    opacity: var(--text-opacity);
+}
+
+.screen-content p {
+    margin: 20px 0;
+}
+
+.sentence {
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    opacity: var(--text-opacity);
+}
+
+.sub-subtitle {
+    font-size: 11px;
+    color: rgba(
+        calc(var(--text-r) * 0.78), 
+        calc(var(--text-g) * 0.78), 
+        calc(var(--text-b) * 0.78), 
+        0.85
+    );
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 35px 0 12px 0;
+    text-shadow: 
+        0 0 3px rgba(
+            calc(var(--glow-r) * 0.78), 
+            calc(var(--glow-g) * 0.78), 
+            calc(var(--glow-b) * 0.78), 
+            0.6
+        ),
+        0 0 8px rgba(
+            calc(var(--glow-r) * 0.78), 
+            calc(var(--glow-g) * 0.78), 
+            calc(var(--glow-b) * 0.78), 
+            0.35
+        );
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    font-weight: 600;
+    opacity: var(--text-opacity);
+}
+
+.detail-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(
+        calc(var(--text-r) * 0.70), 
+        calc(var(--text-g) * 0.70), 
+        calc(var(--text-b) * 0.70), 
+        0.8
+    );
+    letter-spacing: 0.5px;
+    text-shadow: 
+        0 0 3px rgba(
+            calc(var(--glow-r) * 0.70), 
+            calc(var(--glow-g) * 0.70), 
+            calc(var(--glow-b) * 0.70), 
+            0.5
+        ),
+        0 0 6px rgba(
+            calc(var(--glow-r) * 0.70), 
+            calc(var(--glow-g) * 0.70), 
+            calc(var(--glow-b) * 0.70), 
+            0.25
+        );
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    font-style: italic;
+    opacity: var(--text-opacity);
+}
+
+/* CORRUPTION MARKERS - Pirate infiltration */
+.pirate-comment {
+    display: block;
+    margin: 25px 0;
+    padding: 12px 20px;
+    font-style: italic;
+    font-size: 15px;
+    color: rgb(var(--danger-r), var(--danger-g), var(--danger-b));
+    text-shadow: 
+        0 0 6px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 1.0),
+        0 0 14px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.8),
+        0 0 28px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.6);
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    animation: cp-pulse 2.5s ease-in-out infinite, cp-flicker var(--flicker-speed) infinite;
+    opacity: var(--text-opacity);
+}
+
+@keyframes cp-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes cp-flicker {
+    0%, 100% { opacity: 1; }
+    4% { opacity: 0.5; }
+    8% { opacity: 1; }
+    12% { opacity: 0.6; }
+    16% { opacity: 1; }
+    50% { opacity: 1; }
+    54% { opacity: 0.5; }
+    58% { opacity: 1; }
+    85% { opacity: 1; }
+    89% { opacity: 0.55; }
+    93% { opacity: 1; }
+}
+
+/* EMPHASIS MARKERS - Important data */
+.callout-text {
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.95);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 7px rgba(var(--text-r), var(--text-g), var(--text-b), 0.35);
+}
+
+@media (max-width: 768px) {
+    .callout-text {
+        font-weight: 700;
+        font-size: 1.05em;
+        letter-spacing: 1px;
+        text-shadow: 
+            0 0 4px rgba(var(--text-r), var(--text-g), var(--text-b), 0.6),
+            0 0 10px rgba(var(--text-r), var(--text-g), var(--text-b), 0.4);
+    }
+}
+
+.equation-label {
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.95);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 8px rgba(var(--text-r), var(--text-g), var(--text-b), 0.4);
+}
+
+/* Mobile equation label boost */
+@media (max-width: 768px) {
+    .equation-label {
+        font-weight: 700;
+        text-shadow: 
+            0 0 10px rgba(var(--text-r), var(--text-g), var(--text-b), 0.7),
+            0 0 16px rgba(var(--text-r), var(--text-g), var(--text-b), 0.4);
+    }
+}
+
+.parenthetical {
+    color: rgba(
+        calc(var(--text-r) * 0.70), 
+        calc(var(--text-g) * 0.70), 
+        calc(var(--text-b) * 0.70), 
+        0.65
+    );
+    font-size: 0.95em;
+    font-style: italic;
+    text-shadow: 0 0 2px rgba(
+        calc(var(--glow-r) * 0.70), 
+        calc(var(--glow-g) * 0.70), 
+        calc(var(--glow-b) * 0.70), 
+        0.3
+    );
+}
+
+.redacted-text {
+    color: rgb(var(--danger-r), var(--danger-g), var(--danger-b));
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 
+        0 0 6px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 1.0),
+        0 0 12px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.8),
+        0 0 24px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.5);
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    animation: redacted-flicker var(--flicker-speed) infinite, redacted-pulse 3s ease-in-out infinite;
+}
+
+@keyframes redacted-flicker {
+    0%, 100% { opacity: 1; }
+    5% { opacity: 0.5; }
+    10% { opacity: 1; }
+    50% { opacity: 1; }
+    55% { opacity: 0.55; }
+    60% { opacity: 1; }
+}
+
+@keyframes redacted-pulse {
+    0%, 100% { 
+        text-shadow: 
+            0 0 6px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 1.0),
+            0 0 12px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.8),
+            0 0 24px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.5);
+    }
+    50% { 
+        text-shadow: 
+            0 0 8px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 1.0),
+            0 0 16px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.9),
+            0 0 32px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.6);
+    }
+}
+
+.list-item {
+    display: block;
+    font-size: 17px;
+    line-height: 1.9;
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.85);
+    letter-spacing: 0.5px;
+    margin: 8px 0;
+    text-align: center;
+    text-shadow: 0 0 4px rgba(var(--text-r), var(--text-g), var(--text-b), 0.15);
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    opacity: var(--text-opacity);
+}
+
+.emphasis {
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.95);
+    font-weight: 600;
+    text-shadow: 0 0 6px rgba(var(--text-r), var(--text-g), var(--text-b), 0.35);
+}
+
+/* Mobile emphasis boost */
+@media (max-width: 768px) {
+    .emphasis {
+        font-weight: 700;
+        text-shadow: 
+            0 0 8px rgba(var(--text-r), var(--text-g), var(--text-b), 0.6),
+            0 0 14px rgba(var(--text-r), var(--text-g), var(--text-b), 0.4);
+    }
+}
+
+/* No line break - keeps content together */
+.no-break {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Final mystery - the unanswered question */
+.final-mystery {
+    color: rgb(var(--text-r), var(--text-g), var(--text-b));
+    font-weight: 800;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    text-shadow: 
+        0 0 10px rgba(var(--text-r), var(--text-g), var(--text-b), 0.9),
+        0 0 20px rgba(var(--text-r), var(--text-g), var(--text-b), 0.6),
+        0 0 30px rgba(var(--text-r), var(--text-g), var(--text-b), 0.3);
+}
+
+.quote {
+    display: block;
+    padding: 12px 16px;
+    margin: 25px 0;
+    border: 1px solid rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.15);
+    background: rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.015);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.7);
+    text-shadow: 0 0 4px rgba(var(--text-r), var(--text-g), var(--text-b), 0.2);
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+}
+
+/* PHOSPHOR INDICATORS - Visual pulses */
+.blink-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.9);
+    filter: blur(var(--text-body-blur)) brightness(var(--flicker-brightness));
+    animation: dot-pulse calc(var(--flicker-speed) * 6.67) ease-in-out infinite;
+    opacity: var(--text-opacity);
+}
+
+@keyframes dot-pulse {
+    0%, 100% { filter: opacity(0.3); transform: scale(0.8); }
+    50% { filter: opacity(1); transform: scale(1.2); }
+}
+
+.title-dot {
+    display: block;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.end-dot {
+    display: block;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* DEATH SCREEN - Terminal display */
+.death-screen {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    opacity: 0;
+    cursor: crosshair;
+}
+
+.death-screen.active {
+    display: flex;
+    animation: fade-in 2s ease forwards;
+}
+
+.death-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.death-dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0);
+    opacity: 0;
+}
+
+.death-message {
+    font-size: 20px;
+    color: rgb(var(--text-r), var(--text-g), var(--text-b));
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-align: center;
+    padding: 40px;
+    text-shadow: 
+        0 0 4px rgba(var(--text-r), var(--text-g), var(--text-b), 0.7),
+        0 0 10px rgba(var(--text-r), var(--text-g), var(--text-b), 0.4);
+    filter: blur(1.5px);
+    animation: title-flicker 0.3s infinite;
+    opacity: 0;
+}
+
+.death-subtitle {
+    display: block;
+    font-size: 14px;
+    color: rgba(
+        calc(var(--text-r) * 0.78), 
+        calc(var(--text-g) * 0.78), 
+        calc(var(--text-b) * 0.78), 
+        0.7
+    );
+    letter-spacing: 2px;
+    margin-top: 20px;
+    text-shadow: 
+        0 0 3px rgba(
+            calc(var(--glow-r) * 0.78), 
+            calc(var(--glow-g) * 0.78), 
+            calc(var(--glow-b) * 0.78), 
+            0.5
+        );
+}
+
+/* REWARD SCREEN - Ocean achievement */
+.reward-screen {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    opacity: 0;
+    cursor: crosshair;
+}
+
+.reward-screen.active {
+    display: flex;
+    animation: fade-in 2s ease forwards;
+}
+
+.reward-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.reward-dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0);
+    opacity: 0;
+}
+
+.reward-header {
+    font-size: 12px;
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.7);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+}
+
+.reward-title {
+    font-size: 24px;
+    color: rgb(var(--text-r), var(--text-g), var(--text-b));
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 
+        0 0 8px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0),
+        0 0 16px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.8),
+        0 0 32px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.6);
+    animation: title-flicker 0.3s infinite;
+    opacity: 0;
+    filter: blur(0px);
+}
+
+.reward-subtitle {
+    font-size: 13px;
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.8);
+    font-style: italic;
+    letter-spacing: 1px;
+    max-width: 500px;
+    opacity: 0;
+}
+
+.reward-footer {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-tag {
+    font-size: 9px;
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.5);
+    letter-spacing: 1px;
+    opacity: 0;
+}
+
+.footer-credit {
+    font-size: 11px;
+    color: rgba(var(--text-r), var(--text-g), var(--text-b), 0.6);
+    letter-spacing: 2px;
+    opacity: 0;
+}
+
+/* CLIPBOARD NOTIFICATION - Data leak confirmation */
+#clipboardNotification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    
+    color: rgb(220, 240, 255);
+    text-shadow: 
+        0 0 10px rgba(0, 200, 255, 1.0),
+        0 0 20px rgba(0, 200, 255, 0.8),
+        0 0 40px rgba(0, 200, 255, 0.5);
+    
+    z-index: 500;
+    display: none;
+    opacity: 0;
+    animation: message-flicker 0.15s infinite;
+    pointer-events: none;
+    padding: 20px 35px;
+    
+    background: rgba(0, 30, 50, 0.95);
+    border: 1px solid rgba(0, 200, 255, 0.6);
+    border-radius: 3px;
+    box-shadow: 
+        0 0 30px rgba(0, 100, 150, 0.5),
+        inset 0 0 20px rgba(0, 200, 255, 0.1);
+    
+    max-width: 85vw;
+    line-height: 1.5;
+}
+
+@keyframes message-flicker {
+    0%, 100% { opacity: 1; }
+    10% { opacity: 0.85; }
+    20% { opacity: 1; }
+    50% { opacity: 0.92; }
+    60% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .screen-title { font-size: 17px; }
+    .screen-content { font-size: 15px; }
+}
+
+/* ELECTRON BEAM - Visual scanning system */
+.beam-system {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.beam-body {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    background: linear-gradient(to right,
+        transparent 0%,
+        rgba(var(--beam-color-r), var(--beam-color-g), var(--beam-color-b), 0.03) 10%,
+        rgba(var(--beam-color-r), var(--beam-color-g), var(--beam-color-b), 0.06) 50%,
+        rgba(var(--beam-color-r), var(--beam-color-g), var(--beam-color-b), 0.03) 90%,
+        transparent 100%
+    );
+    animation: beam-scan var(--beam-speed) linear infinite;
+}
+
+.beam-glow {
+    position: absolute;
+    width: 100%;
+    height: 12px;
+    left: 0;
+    transform: translateY(-5px);
+    background: linear-gradient(to right,
+        transparent 20%,
+        rgba(var(--beam-color-r), var(--beam-color-g), var(--beam-color-b), 0.04) 50%,
+        transparent 80%
+    );
+    filter: blur(4px);
+    animation: beam-scan var(--beam-speed) linear infinite;
+    opacity: 0.15;
+    transition: opacity 0.1s, filter 0.1s;
+}
+
+.beam-glow.approaching {
+    opacity: 0.25;
+    filter: blur(6px) brightness(1.2);
+}
+
+.beam-hotspot {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    background: linear-gradient(to right,
+        transparent 45%,
+        rgba(var(--beam-color-r), calc(var(--beam-color-g) * 1.5), var(--beam-color-b), 0.025) 48%,
+        rgba(var(--beam-color-r), calc(var(--beam-color-g) * 1.8), calc(var(--beam-color-b) * 0.5), 0.05) 50%,
+        rgba(var(--beam-color-r), calc(var(--beam-color-g) * 1.5), var(--beam-color-b), 0.025) 52%,
+        transparent 55%
+    );
+    animation: beam-scan var(--beam-speed) linear infinite;
+    opacity: 0.1;
+    transition: opacity 0.05s;
+}
+
+.beam-hotspot.active {
+    background: linear-gradient(to right,
+        transparent 45%,
+        rgba(var(--beam-color-r), calc(var(--beam-color-g) * 1.8), calc(var(--beam-color-b) * 0.3), 0.1) 48%,
+        rgba(var(--beam-color-r), calc(var(--beam-color-g) * 2.2), calc(var(--beam-color-b) * 0.2), 0.3) 50%,
+        rgba(var(--beam-color-r), calc(var(--beam-color-g) * 1.8), calc(var(--beam-color-b) * 0.3), 0.1) 52%,
+        transparent 55%
+    ) !important;
+    opacity: 0.3;
+    filter: blur(0.3px);
+}
+
+@keyframes beam-scan {
+    from { 
+        top: var(--beam-start-position);
+        opacity: 0;
+    }
+    2% { opacity: 1; }
+    98% { opacity: 1; }
+    to { 
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* BEAM CONTACT EFFECTS - Phosphor excitation */
+.beam-contact {
+    filter: blur(var(--text-beam-blur)) brightness(1.2) !important;
+    text-shadow: 
+        0 0 8px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0),
+        0 0 16px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.8),
+        0 0 32px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.5) !important;
+    transition: all 0.08s ease-out;
+}
+
+.blink-dot.beam-contact {
+    filter: blur(0px) brightness(1.5) !important;
+    box-shadow: 
+        0 0 20px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0),
+        0 0 40px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.8) !important;
+}
+
+.pirate-comment.beam-contact {
+    filter: blur(var(--text-beam-blur)) brightness(1.3) saturate(1.2) !important;
+    text-shadow: 
+        0 0 6px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 1.0),
+        0 0 12px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 1.0),
+        0 0 24px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.9),
+        0 0 40px rgba(var(--danger-r), var(--danger-g), var(--danger-b), 0.7) !important;
+}
+
+.beam-approaching {
+    opacity: 0.96;
+    filter: brightness(1.05);
+    transition: all 0.15s ease-out;
+}
+
+/* ATMOSPHERIC PARTICLES - Drift system */
+.particle-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(var(--glow-r), var(--glow-g), var(--glow-b), 1.0);
+    opacity: calc(var(--particle-base-opacity) * var(--particle-decay-multiplier));
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    transition: opacity 0.3s ease-out;
+    box-shadow: 0 0 2px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.3);
+    min-width: 1.5px;
+    min-height: 1.5px;
+}
+
+.particle {
+    animation: drift-up linear infinite;
+}
+
+@keyframes drift-up {
+    from { transform: translateY(110vh); }
+    to { transform: translateY(-10vh); }
+}
+
+.particle[data-layer="far"] { z-index: 1; }
+.particle[data-layer="mid"] { z-index: 2; }
+.particle[data-layer="near"] { z-index: 3; }
+
+.particle.beam-revealed {
+    opacity: calc(var(--particle-base-opacity) * 3.5 * var(--particle-decay-multiplier)) !important;
+    transition: opacity 0.1s ease-out, filter 0.1s ease-out;
+}
+
+.particle[data-layer="far"].beam-revealed {
+    opacity: calc(var(--particle-base-opacity) * 2.5 * var(--particle-decay-multiplier)) !important;
+}
+
+.particle[data-layer="mid"].beam-revealed {
+    opacity: calc(var(--particle-base-opacity) * 4.0 * var(--particle-decay-multiplier)) !important;
+}
+
+.particle[data-layer="near"].beam-revealed {
+    opacity: calc(var(--particle-base-opacity) * 5.5 * var(--particle-decay-multiplier)) !important;
+    box-shadow: 0 0 4px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.6);
+}
+
+</style>
+</head>
+<body>
+
+<div class="crt">
+    <div class="password-gate" id="passwordGate">
+        <div class="gate-title" id="gateTitle"></div>
+        <input type="text" 
+               class="membrane-input" 
+               id="passwordInput"
+               placeholder="Enter authentication sequence..."
+               autocomplete="off"
+               spellcheck="false">
+        <button class="membrane-button" id="submitBtn">SUBMIT</button>
+    </div>
+    
+    <div class="page-container" id="pageContainer">
+        <div id="contentDisplay"></div>
+    </div>
+    
+    <div class="death-screen" id="deathScreen">
+        <div class="death-content">
+            <div class="death-dot" id="deathDot"></div>
+            <div class="death-message" id="deathTitle"></div>
+        </div>
+    </div>
+    
+    <div class="reward-screen" id="rewardScreen">
+        <div class="reward-content">
+            <div class="reward-dot" id="rewardDot"></div>
+            <div class="reward-header" id="rewardHeader"></div>
+            <div class="reward-title" id="rewardTitle"></div>
+            <div class="reward-subtitle" id="rewardSubtitle"></div>
+        </div>
+        <div class="reward-footer">
+            <div class="footer-tag" id="footerTag"></div>
+            <div class="footer-credit" id="footerCredit"></div>
+        </div>
+    </div>
+</div>
+
+<div class="fade-top" id="fadeTop"></div>
+<div class="fade-bottom" id="fadeBottom"></div>
+<div class="vignette"></div>
+<div class="scanlines"></div>
+
+<div id="clipboardNotification">THE CAPTAIN IS GRATEFUL FOR YOUR ENGAGEMENT</div>
+
+<script src="book-of-thresholds.js"></script>
+<script src="config.js"></script>
+<script src="decay-core.js"></script>
+<script src="beam.js"></script>
+<script src="particles.js"></script>
+<script src="leak-worm-audio.js"></script>
+
+<script>
+// ==========================================
+// ORGANISM NERVOUS SYSTEM - Main controller
+// (Technical: Runtime state and interaction handling)
+// ==========================================
+
+const worm = {
+    currentScreen: 0,
+    authenticated: false,
+    totalScreens: 9,
+    loadedScreens: new Set(),
+    scrollObserver: null
+};
+
+// COLOR INTERPOLATION - Smooth transitions between states
+// (Technical: Linear interpolation for RGB values)
+function interpolateColor(start, end, progress) {
+    return {
+        r: Math.round(start.r + (end.r - start.r) * progress),
+        g: Math.round(start.g + (end.g - start.g) * progress),
+        b: Math.round(start.b + (end.b - start.b) * progress)
+    };
+}
+
+// VALUE INTERPOLATION - Smooth numerical transitions
+// (Technical: Linear interpolation for single values)
+function interpolateValue(start, end, progress) {
+    return start + (end - start) * progress;
+}
+
+// VISUAL DECAY CASCADE - Apply metabolic state to appearance
+// (Technical: Update all CSS variables based on lifecycle stage)
+function applyDecayVisuals(stage, progress) {
+    const root = document.documentElement;
+    
+    // STATE MAPPING - Determine transition endpoints
+    // (Technical: Map stage to color/effect configurations)
+    let startColors, endColors;
+    let startBreathing, endBreathing;
+    let startVignette, endVignette;
+    let startScanlines, endScanlines;
+    let startTextGlow, endTextGlow;
+    let startBlur, endBlur;
+    let startFlicker, endFlicker;
+    
+    if (stage === 'healthy') {
+        startColors = CONFIG.colors.healthy;
+        endColors = CONFIG.colors.healthy;
+        startBreathing = CONFIG.breathing.healthy;
+        endBreathing = CONFIG.breathing.healthy;
+        startVignette = CONFIG.vignette.healthy;
+        endVignette = CONFIG.vignette.healthy;
+        startScanlines = CONFIG.scanlines.healthy;
+        endScanlines = CONFIG.scanlines.healthy;
+        startTextGlow = CONFIG.textShadow.healthy;
+        endTextGlow = CONFIG.textShadow.healthy;
+        startBlur = CONFIG.blur.healthy;
+        endBlur = CONFIG.blur.healthy;
+        startFlicker = CONFIG.flicker.healthy;
+        endFlicker = CONFIG.flicker.healthy;
+        
+    } else if (stage === 'panic') {
+        startColors = CONFIG.colors.healthy;
+        endColors = CONFIG.colors.panic;
+        startBreathing = CONFIG.breathing.healthy;
+        endBreathing = CONFIG.breathing.panic;
+        startVignette = CONFIG.vignette.healthy;
+        endVignette = CONFIG.vignette.panic;
+        startScanlines = CONFIG.scanlines.healthy;
+        endScanlines = CONFIG.scanlines.panic;
+        startTextGlow = CONFIG.textShadow.healthy;
+        endTextGlow = CONFIG.textShadow.panic;
+        startBlur = CONFIG.blur.healthy;
+        endBlur = CONFIG.blur.panic;
+        startFlicker = CONFIG.flicker.healthy;
+        endFlicker = CONFIG.flicker.panic;
+        
+    } else if (stage === 'decay') {
+        startColors = CONFIG.colors.panic;
+        endColors = CONFIG.colors.decay;
+        startBreathing = CONFIG.breathing.panic;
+        endBreathing = CONFIG.breathing.decay;
+        startVignette = CONFIG.vignette.panic;
+        endVignette = CONFIG.vignette.decay;
+        startScanlines = CONFIG.scanlines.panic;
+        endScanlines = CONFIG.scanlines.decay;
+        startTextGlow = CONFIG.textShadow.panic;
+        endTextGlow = CONFIG.textShadow.decay;
+        startBlur = CONFIG.blur.panic;
+        endBlur = CONFIG.blur.decay;
+        startFlicker = CONFIG.flicker.panic;
+        endFlicker = CONFIG.flicker.decay;
+        
+    } else if (stage === 'death') {
+        startColors = CONFIG.colors.decay;
+        endColors = CONFIG.colors.death;
+        startBreathing = CONFIG.breathing.decay;
+        endBreathing = CONFIG.breathing.death;
+        startVignette = CONFIG.vignette.decay;
+        endVignette = CONFIG.vignette.death;
+        startScanlines = CONFIG.scanlines.decay;
+        endScanlines = CONFIG.scanlines.death;
+        startTextGlow = CONFIG.textShadow.decay;
+        endTextGlow = CONFIG.textShadow.death;
+        startBlur = CONFIG.blur.decay;
+        endBlur = CONFIG.blur.death;
+        startFlicker = CONFIG.flicker.decay;
+        endFlicker = CONFIG.flicker.death;
+        
+    } else if (stage === 'pirate') {
+        const previousStage = decay.previousStage || 'healthy';
+        startColors = CONFIG.colors[previousStage];
+        endColors = CONFIG.colors.pirate;
+        startBreathing = CONFIG.breathing[previousStage];
+        endBreathing = CONFIG.breathing.pirate;
+        startVignette = CONFIG.vignette[previousStage];
+        endVignette = CONFIG.vignette.pirate;
+        startScanlines = CONFIG.scanlines[previousStage];
+        endScanlines = CONFIG.scanlines.pirate;
+        startTextGlow = CONFIG.textShadow[previousStage];
+        endTextGlow = CONFIG.textShadow.pirate;
+        startBlur = CONFIG.blur[previousStage];
+        endBlur = CONFIG.blur.pirate;
+        startFlicker = CONFIG.flicker[previousStage];
+        endFlicker = CONFIG.flicker.pirate;
+    }
+    
+    // COLOR MUTATION - Interpolate phosphor emissions
+    // (Technical: Calculate intermediate color values)
+    const coreColor = interpolateColor(startColors.core, endColors.core, progress);
+    const glowColor = interpolateColor(startColors.glow, endColors.glow, progress);
+    const textColor = interpolateColor(startColors.text, endColors.text, progress);
+    
+    // NERVOUS SYSTEM UPDATE - Propagate through CSS
+    // (Technical: Set CSS variables for all visual properties)
+    root.style.setProperty('--core-r', coreColor.r);
+    root.style.setProperty('--core-g', coreColor.g);
+    root.style.setProperty('--core-b', coreColor.b);
+    root.style.setProperty('--glow-r', glowColor.r);
+    root.style.setProperty('--glow-g', glowColor.g);
+    root.style.setProperty('--glow-b', glowColor.b);
+    root.style.setProperty('--text-r', textColor.r);
+    root.style.setProperty('--text-g', textColor.g);
+    root.style.setProperty('--text-b', textColor.b);
+    
+    // OPACITY CASCADE - Special handling for transitions
+    // (Technical: Apply multiplier for faster opacity fade)
+    let opacityProgress = progress;
+    
+    if (stage === 'pirate') {
+        const multiplier = CONFIG.timings.pirate?.opacityMultiplier ?? 1.0;
+        opacityProgress = Math.min(progress * multiplier, 1.0);
+    } else if (stage === 'death') {
+        const multiplier = CONFIG.timings.standard?.opacityMultiplier ?? 1.0;
+        opacityProgress = Math.min(progress * multiplier, 1.0);
+    }
+    
+    const textOpacity = interpolateValue(
+        startColors.textOpacity ?? 1.0, 
+        endColors.textOpacity ?? 1.0,
+        opacityProgress
+    );
+    root.style.setProperty('--text-opacity', textOpacity);
+    
+    // BEAM COLOR SYNC - Match scanning beam to organism
+    // (Technical: Update beam colors to match glow)
+    root.style.setProperty('--beam-color-r', glowColor.r);
+    root.style.setProperty('--beam-color-g', glowColor.g);
+    root.style.setProperty('--beam-color-b', glowColor.b);
+    
+    // DANGER COLOR MUTATION - Warning signals
+    // (Technical: Interpolate danger/corruption colors)
+    const dangerStartColors = [
+        { r: 200, g: 30, b: 30 },
+        { r: 200, g: 50, b: 40 },
+        { r: 140, g: 80, b: 50 },
+        { r: 80, g: 75, b: 70 }
+    ];
+    
+    let dangerColor;
+    if (stage === 'healthy' || stage === 'pirate') {
+        dangerColor = dangerStartColors[0];
+    } else if (stage === 'panic') {
+        dangerColor = interpolateColor(dangerStartColors[0], dangerStartColors[1], progress);
+    } else if (stage === 'decay') {
+        dangerColor = interpolateColor(dangerStartColors[1], dangerStartColors[2], progress);
+    } else {
+        dangerColor = dangerStartColors[3];
+    }
+    
+    root.style.setProperty('--danger-r', dangerColor.r);
+    root.style.setProperty('--danger-g', dangerColor.g);
+    root.style.setProperty('--danger-b', dangerColor.b);
+    
+    // RESPIRATORY UPDATE - Breathing rhythm
+    // (Technical: Set breathing animation parameters)
+    const breathSpeed = interpolateValue(startBreathing.speed, endBreathing.speed, progress);
+    const breathMin = interpolateValue(startBreathing.opacityMin, endBreathing.opacityMin, progress);
+    const breathMax = interpolateValue(startBreathing.opacityMax, endBreathing.opacityMax, progress);
+    root.style.setProperty('--breathing-speed', breathSpeed + 's');
+    root.style.setProperty('--breathing-opacity-min', breathMin);
+    root.style.setProperty('--breathing-opacity-max', breathMax);
+    
+    // VISION CONSTRICTION - Vignette effect
+    // (Technical: Update edge darkness)
+    const vignetteRadius = interpolateValue(startVignette.radius, endVignette.radius, progress);
+    const vignetteOpacity = interpolateValue(startVignette.opacity, endVignette.opacity, progress);
+    root.style.setProperty('--vignette-radius', vignetteRadius + '%');
+    root.style.setProperty('--vignette-opacity', vignetteOpacity);
+    
+    // SCAN LINE DEGRADATION - CRT interference
+    // (Technical: Update scanline visibility and speed)
+    const scanOpacity = interpolateValue(startScanlines.opacity, endScanlines.opacity, progress);
+    const scanSpeed = interpolateValue(startScanlines.speed, endScanlines.speed, progress);
+    root.style.setProperty('--scanline-opacity', scanOpacity);
+    root.style.setProperty('--scanline-speed', scanSpeed + 's');
+    
+    // PHOSPHOR INTENSITY - Glow strength
+    // (Technical: Update text shadow parameters)
+    const textGlowSpread = interpolateValue(startTextGlow.spread, endTextGlow.spread, progress);
+    const textGlowIntensity = interpolateValue(startTextGlow.intensity, endTextGlow.intensity, progress);
+    root.style.setProperty('--text-glow-spread', textGlowSpread + 'px');
+    root.style.setProperty('--text-glow-intensity', textGlowIntensity);
+    root.style.setProperty('--pirate-glow-spread', (textGlowSpread * 1.125) + 'px');
+    root.style.setProperty('--pirate-glow-intensity', textGlowIntensity * 1.33);
+    
+    // OPTICAL DEGRADATION - Focus blur
+    // (Technical: Update blur filter values)
+    const titleBlur = interpolateValue(startBlur.title, endBlur.title, progress);
+    const textBlur = interpolateValue(startBlur.text, endBlur.text, progress);
+    root.style.setProperty('--text-title-blur', titleBlur + 'px');
+    root.style.setProperty('--text-body-blur', textBlur + 'px');
+    
+    // POWER FLUCTUATION - Voltage instability
+    // (Technical: Update flicker animation speed)
+    const flickerSpeed = interpolateValue(startFlicker.speed, endFlicker.speed, progress);
+    const flickerBrightness = interpolateValue(startFlicker.brightness, endFlicker.brightness, progress);
+    root.style.setProperty('--flicker-speed', flickerSpeed + 's');
+    root.style.setProperty('--flicker-brightness', flickerBrightness);
+}
+
+// ==========================================
+// DEATH SCREEN PREPARATION - Terminal state display
+// (Technical: Setup death screen animation sequence)
+// ==========================================
+
+window.prepareDeathScreen = function() {
+    // FINAL GASP - Organism's last breath
+    // (Technical: Reduce breathing to minimal levels)
+    const root = document.documentElement;
+    const deathScreen = document.getElementById('deathScreen');
+    const deathDot = document.getElementById('deathDot');
+    const deathTitle = document.getElementById('deathTitle');
+    
+    root.style.setProperty('--breathing-opacity-min', '0.03');
+    root.style.setProperty('--breathing-opacity-max', '0.05');
+    root.style.setProperty('--breathing-speed', '8s');
+    
+    deathScreen.classList.add('active');
+    
+    // THINKING PULSE - Death contemplation
+    // (Technical: Blink dot animation sequence)
+    let blinkCount = 0;
+    const blinkInterval = setInterval(() => {
+        deathDot.style.opacity = deathDot.style.opacity === '1' ? '0' : '1';
+        blinkCount++;
+        
+        if (blinkCount >= 6) {
+            clearInterval(blinkInterval);
+            deathDot.style.opacity = '0';
+            
+            // DEATH MESSAGE DISPLAY - Final communication
+            // (Technical: Show termination message with HTML structure)
+            setTimeout(() => {
+                const deathMessage = bookContent?.metadata?.deathMessage || 
+                    'DOCUMENTATION CLEARANCE REVOKED<span class="death-subtitle">ACCESS TERMINATED</span>';
+                
+                deathTitle.innerHTML = deathMessage;
+                deathTitle.style.opacity = '0';
+                
+                setTimeout(() => {
+                    deathTitle.style.transition = 'opacity 1.5s ease';
+                    deathTitle.style.opacity = '1';
+                    
+                    // FINAL FADE - Organism energy depletion
+                    // (Technical: Reduce glow to minimum)
+                    setTimeout(() => {
+                        const fadeSteps = 20;
+                        const fadeInterval = 100;
+                        let currentOpacity = 0.05;
+                        const targetOpacity = 0.02;
+                        const opacityStep = (currentOpacity - targetOpacity) / fadeSteps;
+                        
+                        const organismFade = setInterval(() => {
+                            currentOpacity -= opacityStep;
+                            if (currentOpacity <= targetOpacity) {
+                                currentOpacity = targetOpacity;
+                                clearInterval(organismFade);
+                            }
+                            root.style.setProperty('--breathing-opacity-min', (currentOpacity * 0.6).toFixed(3));
+                            root.style.setProperty('--breathing-opacity-max', currentOpacity.toFixed(3));
+                        }, fadeInterval);
+                    }, 200);
+                }, 100);
+            }, 500);
+        }
+    }, 300);
+    
+    // RESURRECTION TRIGGER - Click to restart
+    // (Technical: Reload page on death screen click)
+    deathScreen.addEventListener('click', () => {
+        location.reload();
+    });
+};
+
+// ==========================================
+// REWARD SCREEN DISPLAY - Ocean achievement
+// (Technical: Show pirate mode reward sequence)
+// ==========================================
+
+function showRewardScreen() {
+    // OCEAN MANIFESTATION - Reward display
+    // (Technical: Setup and animate reward screen elements)
+    
+    const passwordGate = document.getElementById('passwordGate');
+    if (passwordGate) passwordGate.classList.add('hidden');
+    
+    const rewardScreen = document.getElementById('rewardScreen');
+    const dot = document.getElementById('rewardDot');
+    const header = document.getElementById('rewardHeader');
+    const title = document.getElementById('rewardTitle');
+    const subtitle = document.getElementById('rewardSubtitle');
+    const footerCredit = document.getElementById('footerCredit');
+    
+    rewardScreen.classList.add('active');
+    
+    const colorShiftDuration = CONFIG.timings.pirate?.colorShiftDuration || 7000;
+    const fadeOutDuration = CONFIG.timings.pirate?.fadeOutDuration || 3000;
+    const opacityMultiplier = CONFIG.timings.pirate?.opacityMultiplier || 1.2;
+    
+    const opacityFadeComplete = (colorShiftDuration / opacityMultiplier);
+    const delayUntilVisible = Math.max(0, opacityFadeComplete - fadeOutDuration);
+    
+    // THINKING SEQUENCE - Ocean contemplation
+    // (Technical: Delayed animation sequence)
+    setTimeout(() => {
+        let blinkCount = 0;
+        const blinkInterval = setInterval(() => {
+            dot.style.opacity = dot.style.opacity === '1' ? '0' : '1';
+            blinkCount++;
+            if (blinkCount >= 6) {
+                clearInterval(blinkInterval);
+                dot.style.opacity = '0';
+                
+                const rewardData = bookContent.screens.find(s => s.type === 'reward');
+                const metadata = rewardData?.metadata || {};
+                
+                // TYPEWRITER MANIFESTATION - Text appearance
+                // (Technical: Progressive text reveal)
+                setTimeout(() => {
+                    typewriterEffect(header, metadata.header || 'Thank you for engaging with specimen', 50, () => {
+                        setTimeout(() => {
+                            typewriterEffect(title, metadata.title || 'LEAKWORM_CYCLE1022', 50, () => {
+                                setTimeout(() => {
+                                    typewriterEffect(subtitle, metadata.subtitle || 'VALVE CORPORATION boarding request communication', 50, () => {
+                                        setTimeout(() => {
+                                            const creditText = `${metadata.footerCredit || 'C.S. & N.C.'}<br>${metadata.footerSymbol || '{🌊:🌊∈🌊}'}`;
+                                            typewriterEffect(footerCredit, creditText, 50);
+                                        }, 500);
+                                    });
+                                }, 300);
+                            });
+                        }, 300);
+                    });
+                }, 500);
+            }
+        }, 300);
+    }, delayUntilVisible);
+    
+    // ==========================================
+    // ARCHIVE REDIRECT - Fade to black transition
+    // (Technical: Play sound, fade out, then navigate)
+    // ==========================================
+    
+    rewardScreen.addEventListener('click', () => {
+        // UNLOCK SOUND - Password chord
+        // (Technical: Trigger audio confirmation)
+        if (window.leakAudio && window.leakAudio.ready) {
+            window.leakAudio.triggerPasswordUnlock();
+        }
+        
+        // FADE OVERLAY - Black transition screen
+        // (Technical: Create fullscreen fade element)
+        const fadeOverlay = document.createElement('div');
+        fadeOverlay.style.cssText = `
+            position: fixed;
+            inset: 0;
+            background: black;
+            opacity: 0;
+            z-index: 9999;
+            pointer-events: none;
+            transition: opacity 2s ease-out;
+        `;
+        document.body.appendChild(fadeOverlay);
+        
+        // FADE ACTIVATION - Begin transition
+        // (Technical: Trigger opacity transition after small delay)
+        setTimeout(() => {
+            fadeOverlay.style.opacity = '1';
+        }, 50);
+        
+        // ARCHIVE NAVIGATION - Redirect after fade
+        // (Technical: Navigate to lookaway archive after 2.5s)
+        setTimeout(() => {
+            window.location.href = 'https://lookaway-archive.github.io/';
+        }, 2500);
+    });
+}
+
+// ==========================================
+// TYPEWRITER EFFECT - Progressive text reveal
+// (Technical: Character-by-character text animation)
+// ==========================================
+
+function typewriterEffect(element, text, speed, callback) {
+    element.style.opacity = '1';
+    let i = 0;
+    const interval = setInterval(() => {
+        if (i < text.length) {
+            if (text.substr(i, 4) === '<br>') {
+                element.innerHTML += '<br>';
+                i += 4;
+            } else {
+                element.innerHTML += text.charAt(i);
+                i++;
+            }
+        } else {
+            clearInterval(interval);
+            if (callback) callback();
+        }
+    }, speed);
+}
+
+// ==========================================
+// PIRATE MODE INITIATION - Ocean transformation
+// (Technical: Start pirate mode transition)
+// ==========================================
+
+function startPirateMode() {
+    decay.enterPirateMode(() => {
+        showRewardScreen();
+    });
+}
+
+// ==========================================
+// SENTENCE SPLITTING - Text segmentation
+// (Technical: Break text into sentence spans for beam detection)
+// ==========================================
+
+function splitIntoSentences(text) {
+    const sentences = text.match(/[^.!?]+[.!?]+["']*/g) || [text];
+    return sentences
+        .map(s => s.trim())
+        .filter(s => s.length > 0)
+        .map(s => `<span class="sentence">${s}</span>`)
+        .join(' ');
+}
+
+// ==========================================
+// HTML PROCESSING - Sentence wrapping
+// (Technical: Process HTML to wrap text in sentence spans)
+// ==========================================
+
+function processHTMLForSentences(html) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    
+    function processNode(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent.trim();
+            if (text) {
+                const sentenceHTML = splitIntoSentences(text);
+                const wrapper = document.createElement('span');
+                wrapper.innerHTML = sentenceHTML;
+                node.parentNode.replaceChild(wrapper, node);
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const inlineTags = ['span', 'strong', 'em', 'i', 'b', 'callout-text', 'equation-label', 'parenthetical', 'redacted-text', 'emphasis'];
+            if (!inlineTags.includes(node.tagName.toLowerCase())) {
+                Array.from(node.childNodes).forEach(child => processNode(child));
+            }
+        }
+    }
+    
+    processNode(tempDiv);
+    return tempDiv.innerHTML;
+}
+
+// ==========================================
+// SCREEN PLACEHOLDER - Loading indicator
+// (Technical: Create placeholder for lazy-loaded content)
+// ==========================================
+
+function createScreenPlaceholder(screenId) {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'screen-placeholder';
+    placeholder.dataset.screenId = screenId;
+    placeholder.innerHTML = '<div class="loading-indicator">Loading fragment...</div>';
+    return placeholder;
+}
+
+// ==========================================
+// SINGLE SCREEN LOADER - Content injection
+// (Technical: Load and display individual archive segment)
+// ==========================================
+
+function loadSingleScreen(screenId) {
+    if (worm.loadedScreens.has(screenId)) return;
+    
+    const screen = bookContent.screens[screenId];
+    if (!screen) return;
+    
+    let cleanContent = screen.content || '';
+    cleanContent = cleanContent.replace(/style="[^"]*"/gi, '');
+    
+    cleanContent = cleanContent.replace(/<p>(.*?)<\/p>/gs, (match, content) => {
+        return `<p>${processHTMLForSentences(content)}</p>`;
+    });
+    
+    // Only add end-dot for the final content screen (screen 8)
+    const endDot = (screenId === 8) ? '<div class="end-dot"><span class="blink-dot"></span></div>' : '';
+    
+    const section = document.createElement('div');
+    section.className = 'screen-section';
+    section.dataset.screenId = screenId;
+    section.innerHTML = `
+        <div class="title-dot"><span class="blink-dot"></span></div>
+        <div class="screen-title">${screen.title || ''}</div>
+        <div class="screen-subtitle">${screen.subtitle || ''}</div>
+        <div class="screen-content">${cleanContent}</div>
+        ${endDot}
+    `;
+    
+    const placeholder = document.querySelector(`.screen-placeholder[data-screen-id="${screenId}"]`);
+    if (placeholder) {
+        placeholder.replaceWith(section);
+    } else {
+        const container = document.getElementById('contentDisplay');
+        const buttonsContainer = container.querySelector('.buttons-container');
+        if (buttonsContainer) {
+            buttonsContainer.before(section);
+        } else {
+            container.appendChild(section);
+        }
+    }
+    
+    worm.loadedScreens.add(screenId);
+}
+
+// ==========================================
+// PROGRESSIVE LOADING - Viewport optimization
+// (Technical: Setup lazy loading for content segments)
+// ==========================================
+
+function setupProgressiveLoading() {
+    const container = document.getElementById('contentDisplay');
+    
+    // INITIAL LOAD - First two segments
+    // (Technical: Load immediately visible content)
+    loadSingleScreen(1);
+    loadSingleScreen(2);
+    
+    // PLACEHOLDER CREATION - Future segments
+    // (Technical: Create placeholders for lazy loading)
+    for (let i = 3; i <= 8; i++) {
+        container.appendChild(createScreenPlaceholder(i));
+    }
+    
+    // LEAK BUTTON - Data release trigger
+    // (Technical: Add document leak button)
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.className = 'buttons-container';
+    buttonsContainer.innerHTML = `
+        <button class="membrane-button leaked">LEAK DOCUMENT</button>
+    `;
+    container.appendChild(buttonsContainer);
+    
+    const endSpacer = document.createElement('div');
+    endSpacer.style.height = '15vh';
+    container.appendChild(endSpacer);
+    
+    // VIEWPORT OBSERVER - Lazy loading trigger
+    // (Technical: Load content as it enters viewport)
+    worm.scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const screenId = parseInt(entry.target.dataset.screenId);
+                if (!isNaN(screenId)) {
+                    loadSingleScreen(screenId);
+                }
+            }
+        });
+    }, {
+        rootMargin: '400px'
+    });
+    
+    document.querySelectorAll('.screen-placeholder').forEach(placeholder => {
+        worm.scrollObserver.observe(placeholder);
+    });
+}
+
+// ==========================================
+// ORGANISM INITIALIZATION - Birth sequence
+// (Technical: Setup all systems on DOM ready)
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('passwordInput');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // DEPENDENCY CHECK - Verify organs loaded
+    // (Technical: Check required JavaScript modules)
+    if (typeof bookContent === 'undefined') {
+        console.error('book-of-thresholds.js not loaded!');
+        return;
+    }
+    if (typeof CONFIG === 'undefined') {
+        console.error('config.js not loaded!');
+        return;
+    }
+    if (typeof decay === 'undefined') {
+        console.error('decay-core.js not loaded!');
+        return;
+    }
+    
+    // GATE INITIALIZATION - Setup password screen
+    // (Technical: Display authentication barrier)
+    const gateScreen = bookContent.screens[0];
+    if (gateScreen && gateScreen.title) {
+        document.getElementById('gateTitle').textContent = gateScreen.title;
+    }
+    
+    passwordInput.focus();
+    
+    // BEAM INITIALIZATION - Start scanning
+    // (Technical: Initialize electron beam module)
+    if (typeof BeamModule !== 'undefined') {
+        window.beam = new BeamModule();
+        window.beam.init();
+    }
+    
+    // PARTICLE INITIALIZATION - Start atmosphere
+    // (Technical: Initialize particle drift system)
+    if (typeof ParticleDrift !== 'undefined') {
+        window.particles = new ParticleDrift();
+        window.particles.init();
+    }
+    
+    // DECAY SUBSCRIPTION - Connect visual system
+    // (Technical: Subscribe to lifecycle updates)
+    decay.subscribe((stage, progress) => {
+        applyDecayVisuals(stage, progress);
+    });
+    
+    // ==========================================
+    // PASSWORD VERIFICATION - Authentication check
+    // (Technical: Check password and grant access)
+    // ==========================================
+    
+    const checkPassword = () => {
+        const input = passwordInput.value.trim();
+        const correctPassword = bookContent.metadata.password;
+        
+        if (input === correctPassword) {
+            // ACCESS GRANTED - Begin organism life
+            // (Technical: Hide gate, show content, start decay)
+            if (window.leakAudio) window.leakAudio.triggerPasswordUnlock();
+            worm.authenticated = true;
+            document.getElementById('passwordGate').classList.add('hidden');
+            document.getElementById('pageContainer').classList.add('active');
+            document.getElementById('fadeTop').style.display = 'block';
+            document.getElementById('fadeBottom').style.display = 'block';
+            
+             loadSingleScreen(1);
+			 
+			 // Add the button after the message
+			 
+			const container = document.getElementById('contentDisplay');
+			const buttonsContainer = document.createElement('div');
+			buttonsContainer.className = 'buttons-container';
+			buttonsContainer.innerHTML = `
+			<button class="membrane-button leaked">[This repository is currently being updated...]</button>
+			`;
+			container.appendChild(buttonsContainer);
+  
+			// Add bottom spacer
+			
+			const endSpacer = document.createElement('div');
+			endSpacer.style.height = '15vh';
+			container.appendChild(endSpacer);
+            
+            decay.start();
+            
+            // INTERACTION MONITORING - Reset decay on activity
+            // (Technical: Setup event listeners for user interaction)
+            const resetDecay = () => decay.reset();
+            document.addEventListener('scroll', resetDecay);
+            document.addEventListener('mousemove', resetDecay);
+            document.addEventListener('click', resetDecay);
+            document.addEventListener('touchstart', resetDecay);
+            document.addEventListener('keydown', resetDecay);
+            
+        } else {
+            // ACCESS DENIED - Wrong password
+            // (Technical: Shake input and clear)
+            passwordInput.style.animation = 'shake 0.3s';
+            passwordInput.value = '';
+            setTimeout(() => {
+                passwordInput.style.animation = '';
+            }, 300);
+        }
+    };
+    
+    submitBtn.addEventListener('click', checkPassword);
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkPassword();
+    });
+});
+
+// ==========================================
+// CLIPBOARD NOTIFICATION - Leak confirmation
+// (Technical: Show notification when document copied)
+// ==========================================
+
+function showClipboardNotification() {
+    const notification = document.getElementById('clipboardNotification');
+    notification.style.display = 'block';
+    setTimeout(() => notification.style.opacity = '1', 10);
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.style.display = 'none', 300);
+    }, 2000);
+}
+
+// ==========================================
+// DOCUMENT LEAK - Data release function
+// (Technical: Copy archive data to clipboard)
+// ==========================================
+
+function leakDocument(event) {
+    const btn = event.target;
+    
+    // ALREADY ACKNOWLEDGED - Prevent multiple triggers
+    // (Technical: Guard against double-clicks)
+    if (btn.classList.contains('leaked')) return;
+    
+    // ACKNOWLEDGMENT RECEIVED - Dim button
+    // (Technical: Add leaked class to trigger CSS graying)
+    btn.classList.add('leaked');
+    
+    // GRATITUDE NOTIFICATION - Thank the reader
+    // (Technical: Show Captain's appreciation message)
+    showClipboardNotification();
+    
+    // PIRATE MODE TRIGGER - Begin ocean transformation
+    // (Technical: Start pirate mode after notification displays)
+    setTimeout(() => {
+        startPirateMode();
+    }, 2000);
+}
+</script>
+
+</body>
+
+</html>
