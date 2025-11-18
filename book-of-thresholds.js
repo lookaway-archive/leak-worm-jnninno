@@ -5,30 +5,21 @@
  * RETRIEVAL: November 2025, Professional Portfolio Archive
  * ============================================
  * 
- * STATUS: Operational - Professional Variant
- * FUNCTION: Archive transport vessel - carries professional bio and credentials
+ * STATUS: Operational - Three-Act Emotional Arc
+ * FUNCTION: Archive transport vessel - carries professional bio
  * DEPENDENCIES: None (pure data structure)
  * 
  * SURGICAL NOTES:
- * This organ contains Juan Sebastián Niño Flórez's professional presentation.
- * The specimen serves as a living transport mechanism for portfolio information,
- * releasing the content in a permanent ocean-depth aesthetic (pirate mode).
+ * EMOTIONAL ARC: minimal/direct → casual/conversational → poetic/flowing
  * 
- * The archive structure consists of 2 segments (0-1):
- * - Segment 0: Authentication membrane (security protocol)
- * - Segment 1: Professional bio and credentials
- * 
- * No reward screen. Button is grayed out and non-functional by design.
- * The password {🌊:🌊∈🌊} encodes the vessel's pattern in set notation.
+ * ACT 1: Sharp, clear facts (frames are static)
+ * ACT 2: Friendly pattern recognition (seeing it everywhere)
+ * ACT 3: Contemplative depth (what it means)
  * ============================================
  */
 
-// ARCHIVAL TRANSPORT VESSEL - Professional bio container
-// (Technical: Main data structure containing portfolio information)
 const bookContent = {
   
-  // ARCHIVE METADATA - Classification markers
-  // (Technical: Fragment identification and access protocol)
   metadata: {
     title: "PASSWORD",
     fragment: "Professional-Portfolio",
@@ -38,13 +29,7 @@ const bookContent = {
     deathMessage: 'ACCESS TERMINATED<span class="death-subtitle">passive engagement detected</span>'
   },
 
-  // ARCHIVE SEGMENTS - Content structure
-  // (Technical: Array of message segments)
   screens: [
-    // ==========================================
-    // SECURITY PROTOCOL - Authentication gate
-    // (Technical: Password verification before content access)
-    // ==========================================
     {
       id: 0,
       type: "password",
@@ -52,10 +37,6 @@ const bookContent = {
       prompt: "Enter authentication sequence:"
     },
 
-    // ==========================================
-    // THE PATTERN REVELATION - Minimal/Direct style
-    // (Technical: Main content - stripped to essentials)
-    // ==========================================
     {
       id: 1,
       type: "content",
@@ -70,27 +51,37 @@ const bookContent = {
         
         <p><span class="emphasis">Motion doesn't exist in frames.</span></p>
         
-        <p>Frame 1: Ball at position 0. Static.</p>
+        <p>Frame 1: Object at position 0. Static.</p>
         
-        <p>Frame 2: Ball at position 10. Static.</p>
+        <p>Frame 2: Object at position 10. Static.</p>
         
-        <p>Play them back. The ball moves. But that movement isn't in either frame. You create it. The motion exists in the gap.</p>
+        <p>Play them back. The object moves.</p>
         
-        <p>Then I started seeing this pattern everywhere.</p>
+        <p><span class="emphasis">But where is that motion?</span></p>
         
-        <p><span class="emphasis">Your brain fires a signal.</span> Neuron A is active. Then silence. No signal. Nothing firing. Then neuron B is active. Your thought moves from A to B. But the movement isn't in either firing. It's in the gap.</p>
+        <p>Not in Frame 1. Not in Frame 2. It's in the gap between them. In the empty space where there are no frames to see.</p>
         
-        <p><span class="emphasis">A computer updates a value.</span> Clock cycle 1: the number is 5. Then the chip waits. Billions of transistors settling. No computation happening. Clock cycle 2: the number is 7. The computer changed the value. But the change isn't in either cycle. It's in the gap.</p>
+        <p>Then I started seeing the same structure everywhere:</p>
         
-        <p><span class="emphasis">You have a thought.</span> "I see blue." Then a moment of nothing. No thought. Just awareness. "I see red." Consciousness shifted. But the shift isn't in either thought. It's in the gap.</p>
+        <p><span class="emphasis">Neural signals.</span> Neuron A fires. Silence. Neuron B fires. The signal moves — but not in either firing.</p>
         
-        <p>Same structure. Different speeds.</p>
+        <p><span class="emphasis">Clock cycles.</span> Value is 5. Nothing. Value is 7. The computation happens — but not in either cycle.</p>
         
-        <p>Animation: 24 times per second. Neurons: around 100 times per second. Processors: 3 billion times per second. Thoughts: hard to measure precisely.</p>
+        <p><span class="emphasis">Conscious states.</span> Experience blue. Emptiness. Experience red. Awareness shifts — but not in either state.</p>
         
-        <p>In every case the states are static. The motion, the change, the shift only appears when an observer connects them across the gap.</p>
+        <p><span class="emphasis">Where does change actually happen?</span></p>
         
-        <p><span class="emphasis">This space is where I explore these questions.</span></p>
+        <p>In the gap. In the silence. In the emptiness between measurable states.</p>
+        
+        <p>Same structure. Different speeds. 24 frames per second. 100 neural firings per second. 3 billion clock cycles per second.</p>
+        
+        <p>Every time — discrete states can be measured. <span class="emphasis">But motion, change, experience? They exist in what can't be captured.</span></p>
+        
+        <p><span class="emphasis">What is this emptiness where experience lives?</span></p>
+        
+        <p>The investigation started with 24 frames per second. It expanded into neural patterns, computational cycles, quantum measurements.</p>
+        
+        <p>This space is where I explore these questions.</p>
         
         <p class="no-break">Juan Sebastián Niño Flórez</p>
         <p class="no-break">626-540-6520</p>
@@ -107,14 +98,7 @@ const bookContent = {
     }
   ],
   
-  // ==========================================
-  // ARCHIVE RETRIEVAL - Segment access function
-  // (Technical: Utility method to retrieve specific segments)
-  // ==========================================
-  
   getScreen: function(id) {
-    // SEGMENT LOOKUP - Find specific archive section
-    // (Technical: Return segment object by ID)
     return this.screens.find(screen => screen.id === id);
   },
 };
